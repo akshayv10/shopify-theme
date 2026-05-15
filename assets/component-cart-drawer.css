@@ -123,7 +123,7 @@ cart-drawer.is-empty .drawer__inner-empty {
 
 cart-drawer.is-empty .cart-drawer__empty-content .drawer__close {
   top: 1.6rem;
-  right: 0;
+  right: 1.5rem;
   transform: none;
 }
 
@@ -202,7 +202,7 @@ cart-drawer {
 
 .cart-drawer .drawer__cart-items-wrapper {
   flex-grow: 1;
-  padding: 1.8rem 0 0;
+  padding: 2.4rem 0 0;
 }
 
 .cart-drawer .cart-items,
