@@ -283,26 +283,29 @@
           </div>
         {% endif %}
       </div>
-      <div class="sticky-atc-quantity" data-sticky-quantity>
+      <quantity-input class="quantity sticky-atc-quantity" data-sticky-quantity>
         <button
-          class="sticky-atc-quantity__button"
+          class="quantity__button"
           type="button"
           name="minus"
           aria-label="{{ 'products.product.quantity.decrease' | t: product: product.title | escape }}"
           data-sticky-quantity-minus
         >
-          <span aria-hidden="true">-</span>
+          <span class="svg-wrapper">
+            {{- 'icon-minus.svg' | inline_asset_content -}}
+          </span>
         </button>
         <label class="visually-hidden" for="StickyQuantity-{{ section.id }}">
           {{ 'products.product.quantity.label' | t }}
         </label>
         <input
           id="StickyQuantity-{{ section.id }}"
-          class="sticky-atc-quantity__input"
+          class="quantity__input"
           type="number"
           inputmode="numeric"
           data-sticky-quantity-input
           min="{{ product.selected_or_first_available_variant.quantity_rule.min }}"
+          data-min="{{ product.selected_or_first_available_variant.quantity_rule.min }}"
           {% if product.selected_or_first_available_variant.quantity_rule.max != null %}
             max="{{ product.selected_or_first_available_variant.quantity_rule.max }}"
           {% endif %}
@@ -311,15 +314,17 @@
           aria-label="{{ 'products.product.quantity.input_label' | t: product: product.title | escape }}"
         >
         <button
-          class="sticky-atc-quantity__button"
+          class="quantity__button"
           type="button"
           name="plus"
           aria-label="{{ 'products.product.quantity.increase' | t: product: product.title | escape }}"
           data-sticky-quantity-plus
         >
-          <span aria-hidden="true">+</span>
+          <span class="svg-wrapper">
+            {{- 'icon-plus.svg' | inline_asset_content -}}
+          </span>
         </button>
-      </div>
+      </quantity-input>
       <button
         type="submit"
         name="add"
@@ -437,8 +442,10 @@
               var value = mainQuantityInput.getAttribute(attribute);
               if (value !== null) {
                   stickyQuantityInput.setAttribute(attribute, value);
+                  if (attribute === 'min') stickyQuantityInput.setAttribute('data-min', value);
               } else {
                   stickyQuantityInput.removeAttribute(attribute);
+                  if (attribute === 'min') stickyQuantityInput.removeAttribute('data-min');
               }
           });
 
@@ -456,25 +463,27 @@
           atcElement.dataset.stickyQuantityInitialized = 'true';
           syncQuantityRules(atcElement);
 
-          stickyQuantity.addEventListener('click', function(event) {
-              var quantityButton = event.target.closest('[data-sticky-quantity-minus], [data-sticky-quantity-plus]');
-              if (!quantityButton || !stickyQuantity.contains(quantityButton)) return;
+          if (stickyQuantity.tagName.toLowerCase() !== 'quantity-input') {
+              stickyQuantity.addEventListener('click', function(event) {
+                  var quantityButton = event.target.closest('[data-sticky-quantity-minus], [data-sticky-quantity-plus]');
+                  if (!quantityButton || !stickyQuantity.contains(quantityButton)) return;
 
-              event.preventDefault();
-              event.stopPropagation();
+                  event.preventDefault();
+                  event.stopPropagation();
 
-              var step = readNumberAttribute(stickyQuantityInput, 'step', 1);
-              var currentValue = parseInt(stickyQuantityInput.value, 10);
-              if (Number.isNaN(currentValue)) {
-                  currentValue = readNumberAttribute(stickyQuantityInput, 'min', 1);
-              }
+                  var step = readNumberAttribute(stickyQuantityInput, 'step', 1);
+                  var currentValue = parseInt(stickyQuantityInput.value, 10);
+                  if (Number.isNaN(currentValue)) {
+                      currentValue = readNumberAttribute(stickyQuantityInput, 'min', 1);
+                  }
 
-              setStickyQuantity(
-                  stickyQuantityInput,
-                  currentValue + (quantityButton.hasAttribute('data-sticky-quantity-plus') ? step : -step),
-                  true
-              );
-          });
+                  setStickyQuantity(
+                      stickyQuantityInput,
+                      currentValue + (quantityButton.hasAttribute('data-sticky-quantity-plus') ? step : -step),
+                      true
+                  );
+              });
+          }
 
           stickyQuantityInput.addEventListener('change', function() {
               setStickyQuantity(stickyQuantityInput, stickyQuantityInput.value, true);
@@ -795,16 +804,20 @@
   .sticky-atc-quantity {
     display: none;
     align-items: center;
+    width: auto;
     min-height: var(--sticky-atc-control-height);
-    border: 1px solid var(--sticky-atc-control-border);
+    border: 0;
     border-radius: var(--inputs-radius);
     background: rgb(var(--color-background));
-    overflow: hidden;
     flex: 0 0 auto;
   }
 
-  .sticky-atc-quantity__button,
-  .sticky-atc-quantity__input {
+  .sticky-atc-quantity:after {
+    box-shadow: 0 0 0 var(--inputs-border-width) var(--sticky-atc-control-border);
+  }
+
+  .sticky-atc-quantity .quantity__button,
+  .sticky-atc-quantity .quantity__input {
     width: 100%;
     height: 100%;
     min-height: var(--sticky-atc-control-height);
@@ -814,7 +827,7 @@
     font: inherit;
   }
 
-  .sticky-atc-quantity__button {
+  .sticky-atc-quantity .quantity__button {
     cursor: pointer;
     font-size: 1.8rem;
     line-height: 1;
@@ -824,20 +837,20 @@
     user-select: none;
   }
 
-  .sticky-atc-quantity__button:hover {
+  .sticky-atc-quantity .quantity__button:hover {
     background: rgba(var(--color-foreground), 0.06);
   }
 
-  .sticky-atc-quantity__button:focus,
-  .sticky-atc-quantity__button:focus-visible,
-  .sticky-atc-quantity__button:active,
-  .sticky-atc-quantity__button.focused {
+  .sticky-atc-quantity .quantity__button:focus,
+  .sticky-atc-quantity .quantity__button:focus-visible,
+  .sticky-atc-quantity .quantity__button:active,
+  .sticky-atc-quantity .quantity__button.focused {
     outline: 0;
     box-shadow: none;
     background: transparent;
   }
 
-  .sticky-atc-quantity__input {
+  .sticky-atc-quantity .quantity__input {
     appearance: textfield;
     -moz-appearance: textfield;
     text-align: center;
@@ -846,8 +859,8 @@
     padding: 0;
   }
 
-  .sticky-atc-quantity__input::-webkit-outer-spin-button,
-  .sticky-atc-quantity__input::-webkit-inner-spin-button {
+  .sticky-atc-quantity .quantity__input::-webkit-outer-spin-button,
+  .sticky-atc-quantity .quantity__input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
@@ -1083,21 +1096,21 @@
       flex: 0 0 94px;
     }
 
-    .sticky-atc-quantity__button,
-    .sticky-atc-quantity__input {
+    .sticky-atc-quantity .quantity__button,
+    .sticky-atc-quantity .quantity__input {
       height: var(--sticky-atc-control-height);
       min-height: var(--sticky-atc-control-height);
     }
 
-    .sticky-atc-quantity__button {
+    .sticky-atc-quantity .quantity__button {
       -webkit-tap-highlight-color: transparent;
     }
 
-    .sticky-atc-quantity__button:hover {
+    .sticky-atc-quantity .quantity__button:hover {
       background: transparent;
     }
 
-    .sticky-atc-quantity__button:active {
+    .sticky-atc-quantity .quantity__button:active {
       background: transparent;
     }
 
@@ -1221,8 +1234,8 @@
       flex: 0 0 10.2rem;
     }
 
-    .sticky-atc-quantity__button,
-    .sticky-atc-quantity__input {
+    .sticky-atc-quantity .quantity__button,
+    .sticky-atc-quantity .quantity__input {
       height: 3.4rem;
       min-height: 3.4rem;
     }
