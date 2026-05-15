@@ -832,7 +832,7 @@
     cursor: pointer;
     font-size: 1.8rem;
     line-height: 1;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease, transform 0.12s ease;
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
     user-select: none;
@@ -844,12 +844,16 @@
 
   .sticky-atc-quantity .quantity__button:focus,
   .sticky-atc-quantity .quantity__button:focus-visible,
-  .sticky-atc-quantity .quantity__button:active,
   .sticky-atc-quantity .quantity__input:focus,
   .sticky-atc-quantity .quantity__input:focus-visible,
   .sticky-atc-quantity .quantity__button.focused {
     outline: 0;
     box-shadow: none;
+    background: transparent !important;
+  }
+
+  .sticky-atc-quantity .quantity__button:active {
+    transform: scale(0.9);
     background: transparent !important;
   }
 
@@ -1114,6 +1118,7 @@
     }
 
     .sticky-atc-quantity .quantity__button:active {
+      transform: scale(0.9);
       background: transparent;
     }
 
@@ -1211,11 +1216,26 @@
       width: clamp(20rem, calc(var(--sticky-atc-option-text-width, 8ch) + 12rem), 28rem);
     }
 
+    .sticky-atc-desktop .product-form__input--dropdown .select:after {
+      box-shadow: 0 0 0 var(--inputs-border-width) var(--sticky-atc-control-border);
+    }
+
+    .sticky-atc-desktop .product-form__input--dropdown .select:hover:after,
+    .sticky-atc-desktop .product-form__input--dropdown .select:focus-within:after {
+      box-shadow: 0 0 0 var(--inputs-border-width) var(--sticky-atc-control-border);
+    }
+
     .sticky-atc-desktop .product-form__input--dropdown .select__select {
       padding-left: 1.6rem;
       padding-right: 3.8rem;
       text-align: left;
       text-align-last: left;
+    }
+
+    .sticky-atc-desktop .product-form__input--dropdown .select__select:focus,
+    .sticky-atc-desktop .product-form__input--dropdown .select__select:focus-visible {
+      box-shadow: none;
+      outline: 0;
     }
 
     .sticky-atc-price {
