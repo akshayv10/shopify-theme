@@ -98,8 +98,8 @@ cart-drawer:not(.is-empty) .cart-drawer__collection {
   align-items: center;
   justify-content: center;
   padding: 0;
-  min-width: 3.8rem;
-  min-height: 3.8rem;
+  min-width: 3.2rem;
+  min-height: 3.2rem;
   border-radius: var(--inputs-radius);
   box-shadow: none;
   position: absolute;
@@ -128,8 +128,8 @@ cart-drawer.is-empty .cart-drawer__empty-content .drawer__close {
 }
 
 .drawer__close .svg-wrapper {
-  height: 2rem;
-  width: 2rem;
+  height: 1.45rem;
+  width: 1.45rem;
 }
 
 .drawer__contents {
@@ -175,6 +175,11 @@ cart-drawer {
   left: 0;
   width: 100vw;
   height: 100%;
+  font-family: inherit;
+}
+
+.cart-drawer,
+.cart-drawer * {
   font-family: inherit;
 }
 
@@ -414,15 +419,19 @@ cart-drawer-items {
 }
 
 .cart-drawer .quantity {
-  width: 11.4rem;
-  min-height: 3.8rem;
+  width: 10.4rem;
+  min-height: 3.5rem;
   border-radius: var(--inputs-radius);
 }
 
 .cart-drawer .quantity__button,
 .cart-drawer .quantity__input {
-  min-height: 3.8rem;
-  font-size: 1.45rem;
+  min-height: 3.5rem;
+  font-size: 1.35rem;
+}
+
+.cart-drawer .quantity__button {
+  width: 3.4rem;
 }
 
 .cart-drawer .quantity__button {

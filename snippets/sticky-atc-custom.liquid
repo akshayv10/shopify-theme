@@ -631,6 +631,8 @@
 
   
   .sticky-atc {
+    --sticky-atc-control-height: 44px;
+    --sticky-atc-control-border: rgba(var(--color-foreground), 0.12);
     position: fixed;
     left: 0;
     z-index: 40;
@@ -645,6 +647,11 @@
     transition: top 0.3s ease-out, bottom 0.3s ease-out, transform 0.32s ease, opacity 0.24s ease;
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
+  }
+
+  .sticky-atc,
+  .sticky-atc * {
+    font-family: inherit;
   }
 
   .sticky-atc.show {
@@ -788,8 +795,8 @@
   .sticky-atc-quantity {
     display: none;
     align-items: center;
-    min-height: 46px;
-    border: 1px solid rgba(var(--color-foreground), 0.14);
+    min-height: var(--sticky-atc-control-height);
+    border: 1px solid var(--sticky-atc-control-border);
     border-radius: var(--inputs-radius);
     background: rgb(var(--color-background));
     overflow: hidden;
@@ -800,7 +807,7 @@
   .sticky-atc-quantity__input {
     width: 100%;
     height: 100%;
-    min-height: 46px;
+    min-height: var(--sticky-atc-control-height);
     border: 0;
     background: transparent;
     color: rgb(var(--color-foreground));
@@ -1026,8 +1033,8 @@
     }
 
     .sticky-atc .atc-button-container .sticky-atc-mobile-controls-variants .select {
-      height: 44px;
-      border: 1px solid rgba(var(--color-foreground), 0.14);
+      height: var(--sticky-atc-control-height);
+      border: 1px solid var(--sticky-atc-control-border);
       border-radius: var(--inputs-radius);
       background: rgb(var(--color-background));
       overflow: hidden;
@@ -1040,8 +1047,8 @@
 
     .sticky-atc .atc-button-container .sticky-atc-mobile-controls-variants .select__select {
       width: 100%;
-      min-height: 44px;
-      height: 44px;
+      min-height: var(--sticky-atc-control-height);
+      height: var(--sticky-atc-control-height);
       margin: 0;
       padding-left: 1.4rem;
       padding-right: 2.4rem;
@@ -1067,15 +1074,15 @@
     .sticky-atc-quantity {
       display: grid;
       grid-template-columns: 30px 34px 30px;
-      height: 44px;
-      min-height: 44px;
+      height: var(--sticky-atc-control-height);
+      min-height: var(--sticky-atc-control-height);
       flex: 0 0 94px;
     }
 
     .sticky-atc-quantity__button,
     .sticky-atc-quantity__input {
-      height: 44px;
-      min-height: 44px;
+      height: var(--sticky-atc-control-height);
+      min-height: var(--sticky-atc-control-height);
     }
 
     .sticky-atc-quantity__button {
@@ -1205,15 +1212,15 @@
     .sticky-atc-quantity {
       display: grid;
       grid-template-columns: 32px 42px 32px;
-      height: 46px;
-      min-height: 46px;
-      flex: 0 0 106px;
+      height: 3.4rem;
+      min-height: 3.4rem;
+      flex: 0 0 10.2rem;
     }
 
     .sticky-atc-quantity__button,
     .sticky-atc-quantity__input {
-      height: 46px;
-      min-height: 46px;
+      height: 3.4rem;
+      min-height: 3.4rem;
     }
 
     .atc-button-container .product-form__submit {
