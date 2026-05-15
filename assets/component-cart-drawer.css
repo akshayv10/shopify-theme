@@ -507,7 +507,7 @@ cart-drawer-items {
 
 .cart-drawer-payment-icons {
   display: block;
-  width: min(100%, 34rem);
+  width: min(100%, 36rem);
   height: auto;
   margin: 1.4rem auto 0;
   object-fit: contain;
