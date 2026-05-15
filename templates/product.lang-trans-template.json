@@ -1,0 +1,581 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "rich_text_UDrL3y": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_a87hpi": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>30% OFF </strong>'Til Sunday! Don't Miss Out!",
+            "heading_size": "h2"
+          }
+        }
+      },
+      "block_order": [
+        "heading_a87hpi"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "text_MihVYi": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "Bridge worlds, one conversation at a time.",
+            "text_style": "uppercase"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "afterpay_on_site_messaging_payments_messaging_Pa8maX": {
+          "type": "shopify://apps/afterpay-on-site-messaging/blocks/payments-messaging/f45a5524-d177-4475-bf59-281efd2215a8",
+          "settings": {
+            "text_align": "inherit",
+            "margin_top": 4,
+            "margin_bottom": 16,
+            "color": "",
+            "size": "md",
+            "intro_text": "or",
+            "show_interest_free": true,
+            "payment_amount_is_bold": true,
+            "show_with": true,
+            "logo_type": "lockup",
+            "logo_theme": "mint",
+            "modal_link_style": "circled-info-icon",
+            "modal_theme": "mint",
+            "breakpoint": 749,
+            "text_align_mobile": "inherit",
+            "margin_top_mobile": 16,
+            "margin_bottom_mobile": 16,
+            "show_lower_limit": true,
+            "show_upper_limit": true,
+            "show_if_outside_limits": true,
+            "product": "{{product}}"
+          }
+        },
+        "text_9hGT4b": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "🌍 Speak Instantly in 138 Languages",
+            "text_style": "body"
+          }
+        },
+        "text_UX4iYg": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "📶 Offline Mode with 14 Popular Languages",
+            "text_style": "body"
+          }
+        },
+        "text_pQCX98": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "📸 Snap and Translate Any Text Fast",
+            "text_style": "body"
+          }
+        },
+        "text_igaiC4": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "🔋 Lasts 72 Hours Without Charging",
+            "text_style": "body"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "dropdown",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false
+          }
+        },
+        "icon_with_text_GyHJYW": {
+          "type": "icon-with-text",
+          "disabled": true,
+          "settings": {
+            "layout": "horizontal",
+            "icon_1": "box",
+            "heading_1": "Free Worldwide Shipping 🌍",
+            "icon_2": "return",
+            "heading_2": "30-Day Money Back Guarantee✅",
+            "icon_3": "lock",
+            "heading_3": "Safe & Secure Checkout 🛡️"
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "collapsible_tab_MbqeDM": {
+          "type": "collapsible_tab",
+          "disabled": true,
+          "settings": {
+            "heading": "Supported Languages:",
+            "icon": "chat_bubble",
+            "content": "",
+            "page": "online-translation-138-languages"
+          }
+        },
+        "collapsible_tab_WYigUP": {
+          "type": "collapsible_tab",
+          "disabled": true,
+          "settings": {
+            "heading": "Shipping Information",
+            "icon": "truck",
+            "content": "<p>We proudly offer <strong>tracked shipping</strong> on all orders — because your peace of mind matters. Orders are processed within 1–3 business days before being shipped.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_f9QrDf": {
+          "type": "collapsible_tab",
+          "disabled": true,
+          "settings": {
+            "heading": "Return Policy",
+            "icon": "return",
+            "content": "<p>We believe you'll <strong>fall in love</strong> with your purchase — but if not, no worries. Enjoy a <strong>30-Day, Risk-Free Guarantee</strong> — no questions asked. If you're not thrilled with your results, we’ll issue a <strong>full refund</strong>. Just contact us within 30 days.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "text_MihVYi",
+        "price",
+        "afterpay_on_site_messaging_payments_messaging_Pa8maX",
+        "text_9hGT4b",
+        "text_UX4iYg",
+        "text_pQCX98",
+        "text_igaiC4",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "icon_with_text_GyHJYW",
+        "description",
+        "collapsible_tab_MbqeDM",
+        "collapsible_tab_WYigUP",
+        "collapsible_tab_f9QrDf"
+      ],
+      "custom_css": [],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_size": "small",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "thumbnail_slider",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "none",
+        "hide_variants": true,
+        "enable_video_looping": true,
+        "padding_top": 20,
+        "padding_bottom": 0
+      }
+    },
+    "multirow_hFkCXi": {
+      "type": "multirow",
+      "blocks": {
+        "row_EXQ4bP": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/Translator_-_Showcase.png",
+            "caption": "",
+            "heading": "🔁 Real-Time Voice Translation That Actually Sounds Human",
+            "text": "<p>Picture this: You’re in a back-alley market in Seoul or stuck at customs in Madrid. You press a button. Boom. Conversation flows like you’ve lived there for years. SmartSpeak Pro handles live, two-way translation like a charm. No awkward pauses. No guessing. Just seamless, human-like speech.</p>",
+            "button_label": "",
+            "button_link": "#product-form-template--24800481509664__main"
+          }
+        },
+        "row_igch4G": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jul_20_2025_07_42_15_PM.png",
+            "caption": "",
+            "heading": "📸 Snap a Photo. Read Any Sign, Menu, or Foreign Label Instantly",
+            "text": "<p>You’re staring at a menu in Hanoi. Or a train schedule in Prague. Or some contract in Dubai. SmartSpeak Pro turns your camera into a live decoder for 60 languages. Point. Click. Understand. No awkward translations. No mystery meat. No signing something stupid.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_xHAB98": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/138-Language_Offline_Audio_Translator.png",
+            "caption": "",
+            "heading": "📶 Offline Translation So You’re Never Left Speechless",
+            "text": "<p>No Wi-Fi? No SIM card? No mercy SmartSpeak Pro keeps translating with 14 powerhouse languages offline, even in tunnels, planes, remote villages, or even the moon. Never depend on a flaky app or dead signal again.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "row_EXQ4bP",
+        "row_igch4G",
+        "row_xHAB98"
+      ],
+      "disabled": true,
+      "name": "t:sections.multirow.presets.name",
+      "settings": {
+        "image_height": "adapt",
+        "desktop_image_width": "medium",
+        "image_layout": "alternate-left",
+        "heading_size": "h2",
+        "text_style": "body",
+        "button_style": "primary",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-1",
+        "row_color_scheme": "scheme-1",
+        "padding_top": 16,
+        "padding_bottom": 16
+      }
+    },
+    "rich_text_FUEe9G": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_DgWzfU": {
+          "type": "heading",
+          "settings": {
+            "heading": "⚠️ Almost Gone...Again! ⚠️",
+            "heading_size": "h2"
+          }
+        },
+        "text_FTGCMA": {
+          "type": "text",
+          "settings": {
+            "text": "<p>🔥 Blazing demand is wiping us out <strong>fast</strong>. Don’t wait or it’s gone.<br/>💬 Got a question? Hit us anytime at support@myprimepickz.com.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_DgWzfU",
+        "text_FTGCMA"
+      ],
+      "disabled": true,
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-3",
+        "full_width": true,
+        "padding_top": 32,
+        "padding_bottom": 32
+      }
+    },
+    "collapsible_content_eygh8B": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_Cy8MJL": {
+          "type": "collapsible_row",
+          "disabled": true,
+          "settings": {
+            "heading": "Offline Translation - 14 Languages",
+            "icon": "chat_bubble",
+            "row_content": "",
+            "page": "offline-translation-14-languages"
+          }
+        },
+        "collapsible_row_peYP9w": {
+          "type": "collapsible_row",
+          "disabled": true,
+          "settings": {
+            "heading": "Online Translation - 138 Languages",
+            "icon": "chat_bubble",
+            "row_content": "",
+            "page": "online-translation-138-languages"
+          }
+        },
+        "collapsible_row_HEBLXX": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Supported Languages:",
+            "icon": "chat_bubble",
+            "row_content": "",
+            "page": "online-translation-138-languages"
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_Cy8MJL",
+        "collapsible_row_peYP9w",
+        "collapsible_row_HEBLXX"
+      ],
+      "settings": {
+        "caption": "",
+        "heading": "<strong>💬 Which Languages Can It Translate?</strong>",
+        "heading_size": "h2",
+        "heading_alignment": "center",
+        "layout": "none",
+        "container_color_scheme": "scheme-3",
+        "color_scheme": "scheme-1",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 28,
+        "padding_bottom": 32
+      }
+    },
+    "rich_text_EBPUAM": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_XxrMzf": {
+          "type": "heading",
+          "settings": {
+            "heading": "✅ Try SmartSpeak AI Translator Pro. 100% Risk Free.",
+            "heading_size": "h2"
+          }
+        },
+        "text_3d7Amn": {
+          "type": "text",
+          "settings": {
+            "text": "<p>T11 gives you instant global communication without the stress. Try it risk-free for 30 days. Not impressed? Get a full refund — no hassles, no catch. This is smart travel tech that’s got your back.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_XxrMzf",
+        "text_3d7Amn"
+      ],
+      "disabled": true,
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-3",
+        "full_width": true,
+        "padding_top": 36,
+        "padding_bottom": 32
+      }
+    },
+    "collapsible_content_7KRVQ8": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_Lqcw6L": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How Accurate Is The Translation? Can It Handle Real Conversations?",
+            "icon": "question_mark",
+            "row_content": "<p>Yes, and then some. SmartSpeak Pro uses Google’s AI translation engine with over 97 percent accuracy in live conversations. It picks up slang, accents, and background noise with dual noise-canceling microphones. Whether you're haggling in Morocco or chatting in Tokyo, it translates fast, smooth, and natural. No robotic junk. No awkward stutters.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_3kKzE4": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Does It Work Without Wi-Fi Or A Sim Card?",
+            "icon": "question_mark",
+            "row_content": "<p>Absolutely. SmartSpeak Pro translates offline in 14 essential languages. So even when you're off the grid, in a tunnel, or halfway up a mountain, you can still communicate clearly. No connection needed. Just press and talk.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_ammNtC": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How Long Does The Battery Last And Is It Easy To Use?",
+            "icon": "question_mark",
+            "row_content": "<p>You get 4 hours of active translation time and up to 72 hours on standby with one charge. And it's stupid simple to use. Just pick your two languages, press a button, and speak. No app required. No complicated setup. Just results.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_XTWc8c": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Why Should I Buy This Instead Of Using A Free Translation App Like Google Translate?",
+            "icon": "question_mark",
+            "row_content": "<p>Because apps lag, drain your phone, and fail when you're offline. SmartSpeak Pro gives you real time two way translation with high accuracy, noise canceling microphones, and offline support. No apps. No ads. No guessing. Just press, speak, and get answers fast. If you travel or deal with people globally, this is not a luxury. It’s a tool you need.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_Lqcw6L",
+        "collapsible_row_3kKzE4",
+        "collapsible_row_ammNtC",
+        "collapsible_row_XTWc8c"
+      ],
+      "disabled": true,
+      "name": "t:sections.collapsible_content.presets.name",
+      "settings": {
+        "caption": "FAQ",
+        "heading": "🔍 Find Out More Here...",
+        "heading_size": "h2",
+        "heading_alignment": "center",
+        "layout": "none",
+        "container_color_scheme": "scheme-3",
+        "color_scheme": "scheme-1",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 60
+      }
+    },
+    "video_dcjKHR": {
+      "type": "video",
+      "disabled": true,
+      "custom_css": [],
+      "settings": {
+        "heading": "",
+        "heading_size": "h2",
+        "enable_video_looping": true,
+        "video": "shopify://files/videos/translator features w: music (no logo).mp4",
+        "video_url": "",
+        "cover_image": "shopify://shop_images/translator_feature_video_cover_image.png",
+        "description": "",
+        "full_width": false,
+        "color_scheme": "scheme-2",
+        "padding_top": 8,
+        "padding_bottom": 20
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "disabled": true,
+      "settings": {
+        "heading": "You May Also Like...",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-2",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 0,
+        "padding_bottom": 60
+      }
+    },
+    "rich_text_8xeQyc": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_KQFapr": {
+          "type": "heading",
+          "settings": {
+            "heading": "🚚 When Will I Get It?",
+            "heading_size": "h2"
+          }
+        }
+      },
+      "block_order": [
+        "heading_KQFapr"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 28,
+        "padding_bottom": 20
+      }
+    },
+    "custom_liquid_hXnLHp": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<style>\n#responsive-image {\n  display: block;\n  max-width: 100%;\n  height: auto;\n  margin: 0 auto;\n  \n  border-radius: 0;\n}\n\n@media (min-width: 768px) {\n  #responsive-image {\n    width: auto;\n    max-width: 55%;\n    height: auto;\n    border: 2px solid black;\n    border-radius: 12px;\n    \n  }\n}\n</style>\n\n<img id=\"responsive-image\" src=\"https://cdn.shopify.com/s/files/1/0821/5923/9456/files/Shipping_Times_-_Product_Description.png?v=1747884597\" alt=\"Responsive Image\">",
+        "color_scheme": "scheme-1",
+        "padding_top": 8,
+        "padding_bottom": 8
+      }
+    },
+    "rich_text_wPUPqK": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_a3qGna": {
+          "type": "heading",
+          "settings": {
+            "heading": "⬇️ See It In Action!",
+            "heading_size": "h2"
+          }
+        }
+      },
+      "block_order": [
+        "heading_a3qGna"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 20,
+        "padding_bottom": 32
+      }
+    },
+    "custom_liquid_LKxPyY": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<style>\n#scroll-video {\n  width: 100%; /* Default: full width for mobile */\n  height: auto;\n  display: block;\n  margin: 0 auto;\n  overflow: hidden; /* Prevent overflow for future styling */\n  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1); /* Shadow for both mobile and desktop */\n\n}\n\n@media (min-width: 768px) {\n  #scroll-video {\n    width: 50%; /* Adjust for desktop (60% of container width) */\n    border: 2px solid black; /* Thin black border for desktop */\n    border-radius: 12px; /* Rounded corners only for desktop */\n    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow for desktop */\n  }\n}\n</style>\n\n<video id=\"scroll-video\" muted playsinline autoplay loop>\n  <source src=\"https://cdn.shopify.com/videos/c/o/v/e4df7787cc6b41cca56c150a5078d389.mp4\">\n  Your browser does not support the video tag.\n</video>\n\n<script>\ndocument.addEventListener('DOMContentLoaded', function() {\n  const video = document.querySelector('#scroll-video');\n\n  // Ensure the video is muted programmatically\n  video.muted = true;\n\n  // Play the video automatically when it comes into view\n  const playVideo = (entries, observer) => {\n    entries.forEach(entry => {\n      if (entry.isIntersecting) {\n        video.play();\n        observer.disconnect(); // Stop observing once video starts playing\n      }\n    });\n  };\n\n  const observer = new IntersectionObserver(playVideo, {\n    threshold: 0.5, // Trigger when 50% of the video is visible\n  });\n\n  observer.observe(video);\n});\n</script>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 36
+      }
+    },
+    "174781132902bd8c6c": {
+      "type": "apps",
+      "disabled": true,
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "rich_text_UDrL3y",
+    "main",
+    "multirow_hFkCXi",
+    "rich_text_FUEe9G",
+    "collapsible_content_eygh8B",
+    "rich_text_EBPUAM",
+    "collapsible_content_7KRVQ8",
+    "video_dcjKHR",
+    "related-products",
+    "rich_text_8xeQyc",
+    "custom_liquid_hXnLHp",
+    "rich_text_wPUPqK",
+    "custom_liquid_LKxPyY",
+    "174781132902bd8c6c"
+  ]
+}

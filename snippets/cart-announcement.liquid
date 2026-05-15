@@ -1,0 +1,16 @@
+{%- if settings.cart_announcement_text != blank -%}
+  {% comment %}
+    Cart drawer announcement.
+    The text is rich text so selected words can be bold/italic/underlined in the theme editor.
+    The CSS variable below only applies the whole-banner font size.
+  {% endcomment %}
+  <div
+    class="cart-announcement"
+    role="note"
+    style="
+      --cart-announcement-font-size: {{ settings.cart_announcement_font_size }}px;
+    "
+  >
+    {{ settings.cart_announcement_text }}
+  </div>
+{%- endif -%}
