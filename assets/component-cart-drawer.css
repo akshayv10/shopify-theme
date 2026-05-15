@@ -237,7 +237,6 @@ cart-drawer-items {
   margin-bottom: 0;
   padding: 0 0 2rem;
   position: relative;
-  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.1);
 }
 
 .cart-drawer .cart-item:last-child {
