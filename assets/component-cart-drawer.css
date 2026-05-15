@@ -300,7 +300,7 @@ cart-drawer-items {
   margin: 0 0 0.6rem;
   color: rgb(var(--color-foreground));
   font-size: 1.55rem;
-  font-weight: 800;
+  font-weight: var(--font-body-weight);
   line-height: 1.2;
   text-decoration: none;
 }

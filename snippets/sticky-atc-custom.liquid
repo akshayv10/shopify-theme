@@ -941,7 +941,7 @@
     }
 
     .sticky-atc-title-mobile {
-      font-weight: {% if settings.sticky_atc_title_font_style == 'bold' or settings.sticky_atc_title_font_style == 'bold_italic' %}bold{% else %}normal{% endif %};
+      font-weight: var(--font-body-weight);
       font-style: {% if settings.sticky_atc_title_font_style == 'italic' or settings.sticky_atc_title_font_style == 'bold_italic' %}italic{% else %}normal{% endif %};
       font-size: {{ settings.sticky_atc_title_font_size }}rem;
       align-self: end;
@@ -1233,7 +1233,7 @@
 
     .sticky-atc-title-desktop {
       font-size: {{ settings.sticky_atc_title_font_size }}rem;
-      font-weight: {% if settings.sticky_atc_title_font_style == 'bold' or settings.sticky_atc_title_font_style == 'bold_italic' %}bold{% else %}normal{% endif %};
+      font-weight: var(--font-body-weight);
       font-style: {% if settings.sticky_atc_title_font_style == 'italic' or settings.sticky_atc_title_font_style == 'bold_italic' %}italic{% else %}normal{% endif %};
       color: rgb(var(--color-foreground));
       line-height: 1.25;
