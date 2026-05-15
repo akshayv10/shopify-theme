@@ -509,6 +509,13 @@
           function updateStickyPosition() {
               var isMobile = window.innerWidth < 750;
               var position = isMobile ? mobilePosition : desktopPosition;
+
+              if (isMobile) {
+                  atcElement.style.top = position === 'top' ? '{{ settings.mobile_sticky_top_offset }}px' : 'auto';
+                  atcElement.style.bottom = position === 'bottom' ? '10px' : 'auto';
+                  return;
+              }
+
               var hiddenOffset = '-' + (atcElement.offsetHeight + 32) + 'px';
 
               atcElement.style.top = position === 'top' ? hiddenOffset : 'auto';
@@ -635,7 +642,7 @@
     box-shadow: 0 -12px 36px rgba(18, 18, 18, 0.14);
     padding: 10px 16px !important;
     margin: 0 !important; /* Remove extra margins */
-    transition: top 0.3s ease-out, bottom 0.3s ease-out;
+    transition: top 0.3s ease-out, bottom 0.3s ease-out, transform 0.32s ease, opacity 0.24s ease;
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
   }
@@ -872,22 +879,28 @@
       display: none;
     }
 
-    .sticky-atc.show, 
-    .sticky-atc.always-visible {
-      {% if settings.mobile_sticky_position == "top" %}
-        top: {{ settings.mobile_sticky_top_offset }}px !important;
-        bottom: auto !important;
-      {% else %}
-        bottom: 10px !important;
-        top: auto !important;
-      {% endif %}
-    }
-
     .sticky-atc {
       left: 10px;
       width: calc(100% - 20px);
       border-radius: 12px;
       padding: 10px !important;
+      opacity: 0;
+      will-change: transform, opacity;
+      {% if settings.mobile_sticky_position == "top" %}
+        top: {{ settings.mobile_sticky_top_offset }}px !important;
+        bottom: auto !important;
+        transform: translateY(calc(-100% - 24px));
+      {% else %}
+        bottom: 10px !important;
+        top: auto !important;
+        transform: translateY(calc(100% + 24px));
+      {% endif %}
+    }
+
+    .sticky-atc.show,
+    .sticky-atc.always-visible {
+      opacity: 1;
+      transform: translateY(0);
     }
     
     .sticky-atc-mobile-content {
