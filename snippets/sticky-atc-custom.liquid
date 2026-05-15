@@ -809,6 +809,7 @@
     border: 0;
     border-radius: var(--inputs-radius);
     background: rgb(var(--color-background));
+    overflow: hidden;
     flex: 0 0 auto;
   }
 
@@ -822,7 +823,7 @@
     height: 100%;
     min-height: var(--sticky-atc-control-height);
     border: 0;
-    background: transparent;
+    background: transparent !important;
     color: rgb(var(--color-foreground));
     font: inherit;
   }
@@ -844,10 +845,12 @@
   .sticky-atc-quantity .quantity__button:focus,
   .sticky-atc-quantity .quantity__button:focus-visible,
   .sticky-atc-quantity .quantity__button:active,
+  .sticky-atc-quantity .quantity__input:focus,
+  .sticky-atc-quantity .quantity__input:focus-visible,
   .sticky-atc-quantity .quantity__button.focused {
     outline: 0;
     box-shadow: none;
-    background: transparent;
+    background: transparent !important;
   }
 
   .sticky-atc-quantity .quantity__input {
