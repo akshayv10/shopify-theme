@@ -783,7 +783,7 @@
     align-items: center;
     min-height: 46px;
     border: 1px solid rgba(var(--color-foreground), 0.14);
-    border-radius: 12px;
+    border-radius: var(--inputs-radius);
     background: rgb(var(--color-background));
     overflow: hidden;
     flex: 0 0 auto;
@@ -816,9 +816,11 @@
 
   .sticky-atc-quantity__button:focus,
   .sticky-atc-quantity__button:focus-visible,
+  .sticky-atc-quantity__button:active,
   .sticky-atc-quantity__button.focused {
     outline: 0;
     box-shadow: none;
+    background: transparent;
   }
 
   .sticky-atc-quantity__input {
@@ -1013,7 +1015,7 @@
     .sticky-atc .atc-button-container .sticky-atc-mobile-controls-variants .select {
       height: 44px;
       border: 1px solid rgba(var(--color-foreground), 0.14);
-      border-radius: 12px;
+      border-radius: var(--inputs-radius);
       background: rgb(var(--color-background));
       overflow: hidden;
     }
@@ -1033,7 +1035,7 @@
       font-size: 1.5rem;
       color: rgb(var(--color-foreground));
       background: transparent;
-      border-radius: 12px;
+      border-radius: var(--inputs-radius);
       box-shadow: none;
       text-align: left;
       text-align-last: left;
@@ -1072,7 +1074,7 @@
     }
 
     .sticky-atc-quantity__button:active {
-      background: rgba(var(--color-foreground), 0.07);
+      background: transparent;
     }
 
     .atc-button-container .product-form__submit {

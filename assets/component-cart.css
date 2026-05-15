@@ -89,7 +89,7 @@ cart-items {
   /* The drawer version is an edge-to-edge shipping strip. */
   width: calc(100% + 3rem);
   margin: 0 -1.5rem;
-  padding: 1.2rem 0.8rem;
+  padding: 1rem 0.8rem;
   border-radius: 0;
   background: rgba(var(--color-foreground), 0.065);
   font-size: var(--cart-announcement-font-size, 14px);
