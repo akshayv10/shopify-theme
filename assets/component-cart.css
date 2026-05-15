@@ -86,12 +86,12 @@ cart-items {
 }
 
 .drawer__header + .cart-announcement {
-  /* The drawer version is widened so the shipping message fits on one line. */
+  /* The drawer version is an edge-to-edge shipping strip. */
   width: calc(100% + 3rem);
-  margin: -0.4rem -1.5rem 1.6rem;
-  padding-left: 0.8rem;
-  padding-right: 0.8rem;
-  border-radius: 0.6rem;
+  margin: 0 -1.5rem;
+  padding: 1.2rem 0.8rem;
+  border-radius: 0;
+  background: rgba(var(--color-foreground), 0.065);
   font-size: var(--cart-announcement-font-size, 14px);
 }
 
