@@ -18,6 +18,14 @@ class CartDrawer extends HTMLElement {
     checkoutButton.querySelector('.loading__spinner')?.classList.remove('hidden');
   }
 
+  static resetCheckoutLoading() {
+    document.querySelectorAll('#CartDrawer-Checkout').forEach((checkoutButton) => {
+      checkoutButton.classList.remove('loading');
+      checkoutButton.removeAttribute('aria-disabled');
+      checkoutButton.querySelector('.loading__spinner')?.classList.add('hidden');
+    });
+  }
+
   setHeaderCartIconAccessibility() {
     const cartLink = document.querySelector('#cart-icon-bubble');
     if (!cartLink) return;
@@ -127,6 +135,10 @@ class CartDrawer extends HTMLElement {
 }
 
 customElements.define('cart-drawer', CartDrawer);
+
+window.addEventListener('pageshow', () => {
+  CartDrawer.resetCheckoutLoading();
+});
 
 class CartDrawerItems extends CartItems {
   getSectionsToRender() {
