@@ -24,6 +24,7 @@
   {%- if product.quantity_price_breaks_configured? -%}
     {{ 'component-volume-pricing.css' | asset_url | stylesheet_tag }}
   {%- endif -%}
+  {{ 'component-quantity-breaks.css' | asset_url | stylesheet_tag }}
 
   {%- style -%}
     .section-{{ section.id }}-padding {
@@ -41,6 +42,7 @@
 
   <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'quantity-breaks.js' | asset_url }}" defer="defer"></script>
   {%- if product.quantity_price_breaks_configured? -%}
     <script src="{{ 'show-more.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
@@ -482,6 +484,13 @@
               {% assign variant_picker_block = block %}
 
               
+              {%- when 'quantity_breaks' -%}
+                {%- render 'quantity-breaks',
+                  product: product,
+                  block: block,
+                  product_form_id: product_form_id,
+                  section_id: section.id
+                -%}
               {%- when 'buy_buttons' -%}
                 {%- render 'buy-buttons',
                   block: block,
@@ -873,6 +882,343 @@
       "type": "quantity_selector",
       "name": "t:sections.main-product.blocks.quantity_selector.name",
       "limit": 1
+    },
+    {
+      "type": "quantity_breaks",
+      "name": "t:sections.main-product.blocks.quantity_breaks.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "t:sections.main-product.blocks.quantity_breaks.settings.paragraph.content"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.heading.label",
+          "default": "t:sections.main-product.blocks.quantity_breaks.settings.heading.default"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.main-product.blocks.quantity_breaks.settings.tier_1_header.content"
+        },
+        {
+          "type": "checkbox",
+          "id": "tier_1_enabled",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_enabled.label",
+          "default": true
+        },
+        {
+          "type": "number",
+          "id": "tier_1_quantity",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_quantity.label",
+          "default": 1
+        },
+        {
+          "type": "text",
+          "id": "tier_1_label",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_label.label"
+        },
+        {
+          "type": "text",
+          "id": "tier_1_subtitle",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_subtitle.label"
+        },
+        {
+          "type": "text",
+          "id": "tier_1_badge",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_badge.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "tier_1_highlight",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_highlight.label",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "tier_1_discount_type",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_discount_type.label",
+          "options": [
+            {
+              "value": "percent",
+              "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_discount_type.options__1.label"
+            },
+            {
+              "value": "amount",
+              "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_discount_type.options__2.label"
+            },
+            {
+              "value": "fixed_price",
+              "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_discount_type.options__3.label"
+            }
+          ],
+          "default": "percent"
+        },
+        {
+          "type": "number",
+          "id": "tier_1_discount_value",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_discount_value.label",
+          "info": "t:sections.main-product.blocks.quantity_breaks.settings.tier_discount_value.info",
+          "default": 0
+        },
+        {
+          "type": "header",
+          "content": "t:sections.main-product.blocks.quantity_breaks.settings.tier_2_header.content"
+        },
+        {
+          "type": "checkbox",
+          "id": "tier_2_enabled",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_enabled.label",
+          "default": true
+        },
+        {
+          "type": "number",
+          "id": "tier_2_quantity",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_quantity.label",
+          "default": 2
+        },
+        {
+          "type": "text",
+          "id": "tier_2_label",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_label.label"
+        },
+        {
+          "type": "text",
+          "id": "tier_2_subtitle",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_subtitle.label"
+        },
+        {
+          "type": "text",
+          "id": "tier_2_badge",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_badge.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "tier_2_highlight",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_highlight.label",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "tier_2_discount_type",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_discount_type.label",
+          "options": [
+            {
+              "value": "percent",
+              "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_discount_type.options__1.label"
+            },
+            {
+              "value": "amount",
+              "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_discount_type.options__2.label"
+            },
+            {
+              "value": "fixed_price",
+              "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_discount_type.options__3.label"
+            }
+          ],
+          "default": "percent"
+        },
+        {
+          "type": "number",
+          "id": "tier_2_discount_value",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_discount_value.label",
+          "info": "t:sections.main-product.blocks.quantity_breaks.settings.tier_discount_value.info",
+          "default": 10
+        },
+        {
+          "type": "header",
+          "content": "t:sections.main-product.blocks.quantity_breaks.settings.tier_3_header.content"
+        },
+        {
+          "type": "checkbox",
+          "id": "tier_3_enabled",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_enabled.label",
+          "default": true
+        },
+        {
+          "type": "number",
+          "id": "tier_3_quantity",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_quantity.label",
+          "default": 3
+        },
+        {
+          "type": "text",
+          "id": "tier_3_label",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_label.label"
+        },
+        {
+          "type": "text",
+          "id": "tier_3_subtitle",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_subtitle.label"
+        },
+        {
+          "type": "text",
+          "id": "tier_3_badge",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_badge.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "tier_3_highlight",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_highlight.label",
+          "default": true
+        },
+        {
+          "type": "select",
+          "id": "tier_3_discount_type",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_discount_type.label",
+          "options": [
+            {
+              "value": "percent",
+              "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_discount_type.options__1.label"
+            },
+            {
+              "value": "amount",
+              "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_discount_type.options__2.label"
+            },
+            {
+              "value": "fixed_price",
+              "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_discount_type.options__3.label"
+            }
+          ],
+          "default": "percent"
+        },
+        {
+          "type": "number",
+          "id": "tier_3_discount_value",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_discount_value.label",
+          "info": "t:sections.main-product.blocks.quantity_breaks.settings.tier_discount_value.info",
+          "default": 20
+        },
+        {
+          "type": "header",
+          "content": "t:sections.main-product.blocks.quantity_breaks.settings.tier_4_header.content"
+        },
+        {
+          "type": "checkbox",
+          "id": "tier_4_enabled",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_enabled.label",
+          "default": false
+        },
+        {
+          "type": "number",
+          "id": "tier_4_quantity",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_quantity.label",
+          "default": 4
+        },
+        {
+          "type": "text",
+          "id": "tier_4_label",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_label.label"
+        },
+        {
+          "type": "text",
+          "id": "tier_4_subtitle",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_subtitle.label"
+        },
+        {
+          "type": "text",
+          "id": "tier_4_badge",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_badge.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "tier_4_highlight",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_highlight.label",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "tier_4_discount_type",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_discount_type.label",
+          "options": [
+            {
+              "value": "percent",
+              "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_discount_type.options__1.label"
+            },
+            {
+              "value": "amount",
+              "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_discount_type.options__2.label"
+            },
+            {
+              "value": "fixed_price",
+              "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_discount_type.options__3.label"
+            }
+          ],
+          "default": "percent"
+        },
+        {
+          "type": "number",
+          "id": "tier_4_discount_value",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_discount_value.label",
+          "info": "t:sections.main-product.blocks.quantity_breaks.settings.tier_discount_value.info",
+          "default": 25
+        },
+        {
+          "type": "header",
+          "content": "t:sections.main-product.blocks.quantity_breaks.settings.tier_5_header.content"
+        },
+        {
+          "type": "checkbox",
+          "id": "tier_5_enabled",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_enabled.label",
+          "default": false
+        },
+        {
+          "type": "number",
+          "id": "tier_5_quantity",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_quantity.label",
+          "default": 5
+        },
+        {
+          "type": "text",
+          "id": "tier_5_label",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_label.label"
+        },
+        {
+          "type": "text",
+          "id": "tier_5_subtitle",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_subtitle.label"
+        },
+        {
+          "type": "text",
+          "id": "tier_5_badge",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_badge.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "tier_5_highlight",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_highlight.label",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "tier_5_discount_type",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_discount_type.label",
+          "options": [
+            {
+              "value": "percent",
+              "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_discount_type.options__1.label"
+            },
+            {
+              "value": "amount",
+              "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_discount_type.options__2.label"
+            },
+            {
+              "value": "fixed_price",
+              "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_discount_type.options__3.label"
+            }
+          ],
+          "default": "percent"
+        },
+        {
+          "type": "number",
+          "id": "tier_5_discount_value",
+          "label": "t:sections.main-product.blocks.quantity_breaks.settings.tier_discount_value.label",
+          "info": "t:sections.main-product.blocks.quantity_breaks.settings.tier_discount_value.info",
+          "default": 30
+        }
+      ]
     },
     {
       "type": "variant_picker",

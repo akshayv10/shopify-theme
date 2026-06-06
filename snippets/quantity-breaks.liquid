@@ -1,0 +1,206 @@
+{% comment %}
+  Renders a Kaching-style "quantity breaks" volume-discount widget.
+
+  Accepts:
+  - product: {Object} product object.
+  - block: {Object} the quantity_breaks block.
+  - product_form_id: {String} id of the product form to drive the quantity for.
+  - section_id: {String} id of the section this snippet belongs to.
+
+  Usage:
+  {% render 'quantity-breaks', product: product, block: block, product_form_id: product_form_id, section_id: section.id %}
+{% endcomment %}
+
+{%- liquid
+  assign variant = product.selected_or_first_available_variant
+  assign base_price = variant.price | default: 0
+
+  assign rule_min = variant.quantity_rule.min | default: 1
+  assign rule_increment = variant.quantity_rule.increment | default: 1
+  assign rule_max = variant.quantity_rule.max
+
+  comment
+    Only render our own hidden quantity input when the merchant has NOT added a
+    quantity_selector block. Otherwise we drive the existing visible input from JS
+    to avoid two fields named "quantity" on the same form.
+  endcomment
+  assign quantity_selector_blocks = section.blocks | where: 'type', 'quantity_selector'
+  assign has_quantity_selector = false
+  if quantity_selector_blocks.size > 0
+    assign has_quantity_selector = true
+  endif
+
+  comment -- Determine which tier should be pre-selected (highlight wins, else first enabled) --
+  assign default_index = 0
+  for i in (1..5)
+    assign enabled_key = 'tier_' | append: i | append: '_enabled'
+    assign highlight_key = 'tier_' | append: i | append: '_highlight'
+    if block.settings[enabled_key] and block.settings[highlight_key] and default_index == 0
+      assign default_index = i
+    endif
+  endfor
+  if default_index == 0
+    for i in (1..5)
+      assign enabled_key = 'tier_' | append: i | append: '_enabled'
+      if block.settings[enabled_key] and default_index == 0
+        assign default_index = i
+      endif
+    endfor
+  endif
+-%}
+
+<quantity-breaks
+  id="QuantityBreaks-{{ section_id }}"
+  class="quantity-breaks"
+  data-section-id="{{ section_id }}"
+  data-form-id="{{ product_form_id }}"
+  {% if variant == null or variant.available == false %}data-qb-unavailable{% endif %}
+  {{ block.shopify_attributes }}
+>
+  {%- if block.settings.heading != blank -%}
+    <p class="quantity-breaks__heading">{{ block.settings.heading | escape }}</p>
+  {%- endif -%}
+
+  {%- unless has_quantity_selector -%}
+    <input
+      type="hidden"
+      name="quantity"
+      value="1"
+      form="{{ product_form_id }}"
+      class="quantity-breaks__quantity-input"
+      data-qb-quantity
+    >
+  {%- endunless -%}
+
+  <div class="quantity-breaks__list" role="radiogroup">
+    {%- for i in (1..5) -%}
+      {%- liquid
+        assign enabled_key = 'tier_' | append: i | append: '_enabled'
+        unless block.settings[enabled_key]
+          continue
+        endunless
+
+        assign qty_key = 'tier_' | append: i | append: '_quantity'
+        assign label_key = 'tier_' | append: i | append: '_label'
+        assign subtitle_key = 'tier_' | append: i | append: '_subtitle'
+        assign badge_key = 'tier_' | append: i | append: '_badge'
+        assign highlight_key = 'tier_' | append: i | append: '_highlight'
+        assign type_key = 'tier_' | append: i | append: '_discount_type'
+        assign value_key = 'tier_' | append: i | append: '_discount_value'
+
+        assign qty = block.settings[qty_key] | default: 1
+        assign discount_type = block.settings[type_key] | default: 'percent'
+        assign discount_value = block.settings[value_key] | default: 0
+
+        comment -- Respect the variant's quantity rules so a tier never breaks the cart --
+        if qty < rule_min
+          assign qty = rule_min
+        endif
+        assign remainder = qty | modulo: rule_increment
+        if remainder != 0
+          assign qty = qty | plus: rule_increment | minus: remainder
+        endif
+
+        assign over_max = false
+        if rule_max != null and qty > rule_max
+          assign over_max = true
+        endif
+
+        comment -- Per-unit price after discount (work in cents) --
+        case discount_type
+          when 'amount'
+            assign off = discount_value | times: 100
+            assign unit_price = base_price | minus: off
+          when 'fixed_price'
+            assign unit_price = discount_value | times: 100
+          else
+            assign discount_cents = base_price | times: discount_value | divided_by: 100
+            assign unit_price = base_price | minus: discount_cents
+        endcase
+        if unit_price < 0
+          assign unit_price = 0
+        endif
+
+        assign total_price = unit_price | times: qty
+        assign full_total = base_price | times: qty
+        assign savings = full_total | minus: total_price
+        assign savings_percent = 0
+        if full_total > 0
+          assign savings_percent = savings | times: 100 | divided_by: full_total
+        endif
+
+        assign money_unit = unit_price | money
+        assign money_total = total_price | money
+        assign money_full_total = full_total | money
+        assign money_savings = savings | money
+        if settings.currency_code_enabled
+          assign money_unit = unit_price | money_with_currency
+          assign money_total = total_price | money_with_currency
+          assign money_full_total = full_total | money_with_currency
+          assign money_savings = savings | money_with_currency
+        endif
+
+        assign is_highlight = block.settings[highlight_key]
+        assign is_checked = false
+        if i == default_index
+          assign is_checked = true
+        endif
+      -%}
+      <label
+        class="quantity-breaks__tier{% if is_highlight %} quantity-breaks__tier--highlight{% endif %}{% if is_checked %} is-selected{% endif %}"
+        {% if over_max %}data-qb-unavailable{% endif %}
+      >
+        <input
+          class="quantity-breaks__radio"
+          type="radio"
+          name="qb-tier-{{ section_id }}"
+          value="{{ qty }}"
+          data-qb-quantity-value="{{ qty }}"
+          {% if is_checked %}checked{% endif %}
+          {% if over_max %}disabled{% endif %}
+        >
+        <span class="quantity-breaks__tier-main">
+          <span class="quantity-breaks__tier-info">
+            <span class="quantity-breaks__label">
+              {%- if block.settings[label_key] != blank -%}
+                {{ block.settings[label_key] | escape }}
+              {%- else -%}
+                {{- 'products.product.quantity_breaks.buy_quantity' | t: quantity: qty -}}
+              {%- endif -%}
+            </span>
+            {%- if block.settings[subtitle_key] != blank -%}
+              <span class="quantity-breaks__subtitle">{{ block.settings[subtitle_key] | escape }}</span>
+            {%- elsif savings > 0 -%}
+              <span class="quantity-breaks__subtitle">
+                {{- 'products.product.quantity_breaks.save_percent' | t: percent: savings_percent -}}
+              </span>
+            {%- endif -%}
+          </span>
+          <span class="quantity-breaks__prices">
+            <span class="quantity-breaks__total-price">{{ money_total }}</span>
+            {%- if savings > 0 -%}
+              <s class="quantity-breaks__compare">{{ money_full_total }}</s>
+            {%- endif -%}
+            {%- if qty > 1 -%}
+              <span class="quantity-breaks__unit-price">
+                {{- 'products.product.quantity_breaks.per_item' | t: price: money_unit -}}
+              </span>
+            {%- endif -%}
+          </span>
+        </span>
+        {%- if block.settings[badge_key] != blank -%}
+          <span class="quantity-breaks__badge">{{ block.settings[badge_key] | escape }}</span>
+        {%- elsif is_highlight -%}
+          <span class="quantity-breaks__badge">
+            {{- 'products.product.quantity_breaks.most_popular' | t -}}
+          </span>
+        {%- endif -%}
+        {%- if savings > 0 -%}
+          <span class="quantity-breaks__savings">
+            {{- 'products.product.quantity_breaks.save' | t }} {{ money_savings -}}
+          </span>
+        {%- endif -%}
+      </label>
+    {%- endfor -%}
+  </div>
+</quantity-breaks>
