@@ -36,16 +36,19 @@
 		}
 	</script>
 {% else %}
-	<script>
-		function handleLinkClick(event, link) {
-			if (link.startsWith('#') || link.startsWith('.')) {
-				event.preventDefault();
+<script>
+	function handleLinkClick(event, link) {
+		link = link.replace(/^https:\/\/pagepilot\.ai\/url-/, '');
+		link = link.replace(/^https:\/\/(?=[.#])/, '');
 
-				const element = document.querySelector(link);
-				if (element) {
-					element.click();
-				}
+		if (link.startsWith('#') || link.startsWith('.')) {
+			event.preventDefault();
+
+			const element = document.querySelector(link);
+			if (element) {
+				element.click();
 			}
 		}
-	</script>
+	}
+</script>
 {% endif %}
