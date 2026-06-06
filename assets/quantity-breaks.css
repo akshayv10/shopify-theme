@@ -1,0 +1,123 @@
+.quantity-breaks {
+  --qb-accent: rgb(var(--color-button, 0 0 0));
+  display: block;
+  margin: 1.5rem 0;
+}
+
+.quantity-breaks__heading {
+  margin: 0 0 1rem;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.quantity-breaks__list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.quantity-breaks__card {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.4rem 1.6rem;
+  border: 0.2rem solid rgba(var(--color-foreground, 0 0 0), 0.18);
+  border-radius: var(--inputs-radius, 1.2rem);
+  cursor: pointer;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  background: rgb(var(--color-background, 255 255 255));
+}
+
+.quantity-breaks__card.is-highlighted {
+  border-color: var(--qb-accent);
+}
+
+.quantity-breaks__card.is-selected {
+  border-color: var(--qb-accent);
+  box-shadow: 0 0 0 0.1rem var(--qb-accent);
+}
+
+.quantity-breaks__radio {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.quantity-breaks__radio-dot {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 0.2rem solid rgba(var(--color-foreground, 0 0 0), 0.35);
+  flex-shrink: 0;
+  position: relative;
+}
+
+.quantity-breaks__card.is-selected .quantity-breaks__radio-dot {
+  border-color: var(--qb-accent);
+}
+
+.quantity-breaks__card.is-selected .quantity-breaks__radio-dot::after {
+  content: '';
+  position: absolute;
+  inset: 0.35rem;
+  border-radius: 50%;
+  background: var(--qb-accent);
+}
+
+.quantity-breaks__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.quantity-breaks__label {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.quantity-breaks__save {
+  font-size: 1.2rem;
+  color: var(--qb-accent);
+  font-weight: 600;
+}
+
+.quantity-breaks__pricing {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.1rem;
+  text-align: right;
+}
+
+.quantity-breaks__total {
+  font-weight: 700;
+  font-size: 1.6rem;
+}
+
+.quantity-breaks__compare {
+  font-size: 1.2rem;
+  opacity: 0.6;
+}
+
+.quantity-breaks__per-unit {
+  font-size: 1.1rem;
+  opacity: 0.7;
+}
+
+.quantity-breaks__badge {
+  position: absolute;
+  top: -1rem;
+  right: 1.6rem;
+  background: var(--qb-accent);
+  color: rgb(var(--color-button-text, 255 255 255));
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.8rem;
+  border-radius: 0.6rem;
+  line-height: 1;
+}

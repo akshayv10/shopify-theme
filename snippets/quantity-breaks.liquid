@@ -1,0 +1,97 @@
+{% comment %}
+  Quantity Breaks widget (Kaching-style volume bundles).
+
+  Renders a stack of selectable tier cards on the product page. Selecting a card
+  sets the quantity that will be added to cart and updates the displayed pricing.
+  The real discount is applied at checkout by matching Shopify automatic
+  quantity discounts (see store discounts), so the percentages configured here
+  must mirror those discounts.
+
+  Accepts:
+  - block: {Object} the main-product block providing the settings.
+  - product: {Object} the current product.
+  - product_form_id: {String} the product form id (unused directly but kept for parity).
+{% endcomment %}
+
+{{ 'quantity-breaks.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'quantity-breaks.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign unit_price = product.selected_or_first_available_variant.price
+  assign accent = block.settings.accent_color
+  assign popular_label = block.settings.popular_label | default: 'MOST POPULAR'
+-%}
+
+<quantity-breaks
+  class="quantity-breaks"
+  data-section-id="{{ section.id }}"
+  data-unit-price="{{ unit_price }}"
+  data-money-format="{{ shop.money_format | escape }}"
+  {% if accent != blank %}style="--qb-accent: {{ accent }};"{% endif %}
+  {{ block.shopify_attributes }}
+>
+  {%- if block.settings.heading != blank -%}
+    <p class="quantity-breaks__heading">{{ block.settings.heading | escape }}</p>
+  {%- endif -%}
+
+  <div class="quantity-breaks__list" role="radiogroup" aria-label="{{ block.settings.heading | default: 'Quantity breaks' | escape }}">
+    {%- for i in (1..4) -%}
+      {%- liquid
+        assign qty_key = 'tier_' | append: i | append: '_qty'
+        assign label_key = 'tier_' | append: i | append: '_label'
+        assign badge_key = 'tier_' | append: i | append: '_badge'
+        assign discount_key = 'tier_' | append: i | append: '_discount'
+        assign highlight_key = 'tier_' | append: i | append: '_highlight'
+
+        assign qty = block.settings[qty_key]
+        assign label = block.settings[label_key]
+        assign badge = block.settings[badge_key]
+        assign discount = block.settings[discount_key]
+        assign highlight = block.settings[highlight_key]
+      -%}
+      {%- if qty and qty > 0 -%}
+        {%- liquid
+          assign original_total = unit_price | times: qty
+          assign discount_factor = 100 | minus: discount
+          assign discounted_total = original_total | times: discount_factor | divided_by: 100
+          assign per_unit = discounted_total | divided_by: qty
+        -%}
+        <label
+          class="quantity-breaks__card{% if highlight %} is-highlighted{% endif %}"
+          data-qty="{{ qty }}"
+          data-discount="{{ discount }}"
+        >
+          <input
+            type="radio"
+            name="quantity-breaks-{{ section.id }}"
+            class="quantity-breaks__radio"
+            value="{{ qty }}"
+            {% if highlight %}checked{% endif %}
+          >
+          {%- if badge != blank -%}
+            <span class="quantity-breaks__badge">{{ badge | escape }}</span>
+          {%- elsif highlight -%}
+            <span class="quantity-breaks__badge">{{ popular_label | escape }}</span>
+          {%- endif -%}
+
+          <span class="quantity-breaks__radio-dot" aria-hidden="true"></span>
+
+          <span class="quantity-breaks__info">
+            <span class="quantity-breaks__label">{{ label | default: qty | escape }}</span>
+            {%- if discount > 0 -%}
+              <span class="quantity-breaks__save">Save {{ discount }}%</span>
+            {%- endif -%}
+          </span>
+
+          <span class="quantity-breaks__pricing">
+            <span class="quantity-breaks__total" data-qb-total>{{ discounted_total | money }}</span>
+            {%- if discount > 0 -%}
+              <s class="quantity-breaks__compare" data-qb-compare>{{ original_total | money }}</s>
+            {%- endif -%}
+            <span class="quantity-breaks__per-unit" data-qb-per-unit>{{ per_unit | money }}/ea</span>
+          </span>
+        </label>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</quantity-breaks>
