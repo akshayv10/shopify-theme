@@ -1977,6 +1977,67 @@
         "quantity_selector": {
           "name": "Quantity selector"
         },
+        "quantity_breaks": {
+          "name": "Quantity breaks",
+          "settings": {
+            "paragraph": {
+              "content": "Show volume-discount tiers (buy more, save more). To enforce the discount at checkout, create a matching Shopify automatic discount with a minimum quantity for this product."
+            },
+            "heading": {
+              "label": "Heading",
+              "default": "Bundle & save"
+            },
+            "tier_enabled": {
+              "label": "Show this tier"
+            },
+            "tier_quantity": {
+              "label": "Quantity"
+            },
+            "tier_label": {
+              "label": "Label"
+            },
+            "tier_subtitle": {
+              "label": "Subtitle"
+            },
+            "tier_badge": {
+              "label": "Badge text"
+            },
+            "tier_highlight": {
+              "label": "Highlight as most popular"
+            },
+            "tier_discount_type": {
+              "label": "Discount type",
+              "options__1": {
+                "label": "Percentage off"
+              },
+              "options__2": {
+                "label": "Amount off (per item)"
+              },
+              "options__3": {
+                "label": "Fixed price (per item)"
+              }
+            },
+            "tier_discount_value": {
+              "label": "Discount value",
+              "info": "Percentage (e.g. 10), amount off per item, or fixed price per item depending on the type above. This sets the displayed price only — create a matching Shopify automatic discount to enforce it at checkout."
+            },
+            "tier_1_header": {
+              "content": "Tier 1"
+            },
+            "tier_2_header": {
+              "content": "Tier 2"
+            },
+            "tier_3_header": {
+              "content": "Tier 3"
+            },
+            "tier_4_header": {
+              "content": "Tier 4"
+            },
+            "tier_5_header": {
+              "content": "Tier 5"
+            }
+          }
+        },
         "variant_picker": {
           "name": "Variant picker",
           "settings": {
