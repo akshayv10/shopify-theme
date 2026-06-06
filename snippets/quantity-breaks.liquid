@@ -30,7 +30,7 @@
     assign has_quantity_selector = true
   endif
 
-  comment -- Determine which tier should be pre-selected (highlight wins, else first enabled) --
+  # Determine which tier should be pre-selected (highlight wins, else first enabled)
   assign default_index = 0
   for i in (1..5)
     assign enabled_key = 'tier_' | append: i | append: '_enabled'
@@ -92,7 +92,7 @@
         assign discount_type = block.settings[type_key] | default: 'percent'
         assign discount_value = block.settings[value_key] | default: 0
 
-        comment -- Respect the variant's quantity rules so a tier never breaks the cart --
+        # Respect the variant's quantity rules so a tier never breaks the cart
         if qty < rule_min
           assign qty = rule_min
         endif
@@ -106,7 +106,7 @@
           assign over_max = true
         endif
 
-        comment -- Per-unit price after discount (work in cents) --
+        # Per-unit price after discount (work in cents)
         case discount_type
           when 'amount'
             assign off = discount_value | times: 100
